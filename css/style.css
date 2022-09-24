@@ -1,5 +1,52 @@
 @charset "UTF-8";
 
+/* リセットCSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* CSSの設定 */
 html {
   font-size: 100%;
 }
@@ -42,7 +89,7 @@ li {
   padding-bottom: 160px;
 }
 
-.site-title {
+.site-title a{
   width: 180px;
   line-height: 1px;
   display: block;
@@ -70,7 +117,7 @@ li {
 }
 
 /* ハンバーガーメニュー 
-メニューが閉じているとき */
+メニューが閉じていると、画面左に隠し非表示にする */
 #navi {
   position: fixed;
   top: 0;
@@ -91,6 +138,13 @@ li {
   margin-bottom: 14px;
 }
 
+/* ハンバーガーメニュー 
+メニューが開いていると、画面左に表示する */
+.open #navi {
+  left: 0;
+  opacity: 1;
+}
+
 .toggle_btn {
   width: 30px;
   height: 30px;
@@ -100,12 +154,6 @@ li {
   z-index: 20;
 }
 
-/* ハンバーガーメニュー
-メニューが開いているとき */
-
-
-
-
 
 /* ハンバーガーメニューの線の設定
 メニューが閉じているとき */
@@ -114,7 +162,7 @@ li {
   position: absolute;
   width: 30px;
   height: 2px;
-  background-color: #fff;
+  background-color: #333;
   border-radius: 4px;
   transition: all 0.5s;
 }
@@ -127,9 +175,41 @@ li {
   bottom: 10px;
 }
 
+
+/* ハンバーガーメニューの線の設定
+メニューが開いているとき */
+
+.open .toggle_btn span {
+  background-color: #fff;
+}
+
+.open .toggle_btn span:nth-child(1) {
+  -webkit-transform: translateY(4px) rotate(-45deg);
+  transform: translateY(4px) rotate(-45deg);
+}
+
+.open .toggle_btn span:nth-child(2) {
+  -webkit-transform: translateY(-4px) rotate(45deg);
+  transform: translateY(-4px) rotate(45deg);
+}
+
 #mask {
   display: none;
   transition: all 0.5s;
+}
+
+/* メニューを開いているときは全体を黒背景にする */
+.open #mask {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.8;
+  z-index: 10;
+  cursor: pointer;
 }
 
 /* top,products */
@@ -142,7 +222,6 @@ li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0;
 }
 
 .product-list li {
@@ -198,7 +277,6 @@ li {
 .item-text dl {
   display: flex;
   flex-wrap: wrap;
-  padding: 0;
 }
 
 .item-text dt {
@@ -217,7 +295,7 @@ li {
 
 #about p {
   margin-bottom: 30px;
-  margin-bottom: 30px;
+  line-height: 1.9;
 }
 
 
